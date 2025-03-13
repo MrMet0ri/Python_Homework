@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, Numeric, Date
 from sqlalchemy.orm import declarative_base, sessionmaker
+from datetime import date
 import pytest
 
 DATABASE_URL = "postgresql://postgres:2024@localhost:5432/QA"
@@ -27,7 +28,7 @@ def session():
 def test_add_sale(session):
     new_sale = Sales(
         sale_id=1000, store_id=10, customer_id=20,
-        dt="2025-03-12", amt=100.00
+        dt=date(2025, 3, 12), amt=100.00
     )
     session.add(new_sale)
     session.commit()
@@ -43,7 +44,7 @@ def test_add_sale(session):
 def test_update_sale(session):
     new_sale = Sales(
         sale_id=2000, store_id=11, customer_id=21,
-        dt="2025-03-13", amt=200.00
+        dt=date(2025, 3, 13), amt=200.00
     )
     session.add(new_sale)
     session.commit()
@@ -62,7 +63,7 @@ def test_update_sale(session):
 def test_delete_sale(session):
     new_sale = Sales(
         sale_id=3000, store_id=12, customer_id=22,
-        dt="2025-03-14", amt=300.00
+        dt=date(2025, 3, 14), amt=300.00
     )
     session.add(new_sale)
     session.commit()
